@@ -33,7 +33,4 @@ export class RegisterService {
     return this.currentUserToken.asObservable();
   }
 
-  get token():String {
-    return this.currentUserToken.value;
-  }
 }

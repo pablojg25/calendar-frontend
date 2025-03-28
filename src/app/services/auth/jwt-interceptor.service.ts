@@ -14,7 +14,7 @@ export class JwtInterceptorService implements HttpInterceptor {
   constructor(private loginService:LoginService, private registerService:RegisterService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let token = localStorage.getItem("token") || this.loginService.token || this.registerService.token;
+    let token = localStorage.getItem("token");
 
     if (token) {
       let clonedReq=req.clone({
