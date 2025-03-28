@@ -5,7 +5,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { CreateUserNotificationComponent } from './components/create-user-notification/create-user-notification.component';
 import { authGuard } from './guards/auth.guard';
 import { noLoginGuard } from './guards/no-login.guard';
-import { ViewUserNotificationComponent } from './view-user-notification/view-user-notification.component';
+import { ViewUserNotificationComponent } from './components/view-user-notification/view-user-notification.component';
 
 export const routes: Routes = [
     {path:'',component:HomeComponent},

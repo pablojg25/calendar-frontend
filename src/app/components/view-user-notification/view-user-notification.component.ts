@@ -1,22 +1,33 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { UsernotifsService } from '../services/usernotifs/usernotifs.service';
+import { UsernotifsService } from '../../services/usernotifs/usernotifs.service';
+import { CommonModule } from '@angular/common';
+import { UpdateUserNotificationComponent } from '../update-user-notification/update-user-notification.component';
 
 @Component({
   selector: 'app-view-user-notification',
-  imports: [RouterModule],
+  imports: [
+    RouterModule,
+    CommonModule,
+    UpdateUserNotificationComponent
+  ],
   templateUrl: './view-user-notification.component.html',
   styleUrl: './view-user-notification.component.css'
 })
 export class ViewUserNotificationComponent {
 
   notification: any;
+  updating:Boolean = false;
 
   constructor(private userNotifsService:UsernotifsService, private router:Router) {}
 
   ngOnInit(): void {
     this.notification = history.state.notif;
     console.log(this.notification);
+  }
+
+  updateNotif() {
+    this.updating=!this.updating;
   }
 
   deleteNotif() {

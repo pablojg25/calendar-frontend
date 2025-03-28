@@ -36,7 +36,17 @@ export class UsernotifsService {
   }
 
   createNotif(notifData: UserNotifRequest) : Observable<UserNotif> {
-    return this.http.post<UserNotifResponse>(environment.urlApi + "/notifications",notifData).pipe(
+    return this.http.post<UserNotifResponse>(environment.urlApi + "/notifications", notifData).pipe(
+      map(notifData => notifData.body),
+      tap( notifData => {
+        console.log(notifData);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  updateNotif(id:Number, notifData: UserNotifRequest) : Observable<UserNotif> {
+    return this.http.put<UserNotifResponse>(environment.urlApi + "/notifications/" + id, notifData).pipe(
       map(notifData => notifData.body),
       tap( notifData => {
         console.log(notifData);
