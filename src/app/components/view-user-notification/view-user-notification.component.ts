@@ -23,7 +23,6 @@ export class ViewUserNotificationComponent {
 
   ngOnInit(): void {
     this.notification = history.state.notif;
-    console.log(this.notification);
   }
 
   updateNotif() {
