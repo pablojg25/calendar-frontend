@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { LoginService } from '../login/login.service';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { RegisterService } from '../register/register.service';
+import { TokenService } from '../services/jwt/token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +9,19 @@ import { RegisterService } from '../register/register.service';
 export class JwtInterceptorService implements HttpInterceptor {
 
   token:String = '';
+  private excludedRoutes = ['/auth/login', '/auth/register'];
 
-  constructor(private loginService:LoginService, private registerService:RegisterService) {}
+  constructor(private tokenService:TokenService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let token = localStorage.getItem("token");
+
+    if (this.excludedRoutes.some(url => req.url.includes(url))) {
+      return next.handle(req);
+    }
+
+    this.tokenService.checkTokenValidity();
+
+    let token = sessionStorage.getItem("token");
 
     if (token) {
       let clonedReq=req.clone({

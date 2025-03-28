@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { JwtInterceptorErrorService } from './jwt-interceptor-error.service';
 
 describe('JwtInterceptorErrorService', () => {

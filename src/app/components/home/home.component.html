@@ -1,4 +1,13 @@
-<h1 *ngIf="noNotifications; else notificationsList"  class="text-2xl font-bold text-center">No tienes notificaciones</h1>
-<ng-template #notificationsList>
-    <app-user-notification *ngFor="let notif of notifications"></app-user-notification>
-</ng-template>
+<div class="m-5 justify-items-center">
+    <h1 *ngIf="!userLoggedIn; else login" class="text-2xl font-bold text-center">No has iniciado sesión</h1>
+    <ng-template #login>
+        <h1 *ngIf="noNotifications; else notificationsList" class="text-2xl font-bold text-center">No tienes notificaciones</h1>
+        <button [routerLink]="['create-user-notification']" class="bg-blue-500 text-white font-bold rounded-md mt-3 px-3 py-2">Crear notificación</button>
+        <ng-template #notificationsList>
+            <h1 class="text-2xl font-bold text-center">Notificaciones</h1>
+            <ul>
+                <app-user-notification *ngFor="let notif of notifications" [notif]="notif"></app-user-notification>
+            </ul>
+        </ng-template>
+    </ng-template>
+</div>

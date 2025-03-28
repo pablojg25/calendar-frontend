@@ -20,13 +20,23 @@ export class HeaderComponent implements OnInit {
   constructor(private registerService:RegisterService, private loginService:LoginService, private router:Router) {}
 
   ngOnInit(): void {
+    this.registerService.currentUserToken.subscribe({
+      next: (token) => {
+        this.userLoggedIn = token != null;
+      }
+    });
+    this.loginService.currentUserToken.subscribe({
+      next: (token) => {
+        this.userLoggedIn = token != null;
+      }
+    })
     this.userLoggedIn = sessionStorage.getItem("token") != null;
   }
 
   logout(): void {
     sessionStorage.removeItem("token");
     this.userLoggedIn = false;
-    this.router.navigate(['home']);
+    this.router.navigate(['login']);
   }
 
 }

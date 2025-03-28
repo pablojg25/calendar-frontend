@@ -1,1 +1,52 @@
-<p>create-user-notification works!</p>
+<form [formGroup]="notifForm" class="bg-gray-200 mt-4 mb-3 rounded-md p-7 pt-5 grid grid-cols-1 justify-items-center gap-5 w-fit justify-self-center shadow-md">
+    <h1 class="text-2xl font-bold text-center">Nueva notificación</h1>
+    <div class="bg-gray-100 p-5 rounded-md shadow-md">
+        <div class="grid grid-cols-1 my-6">
+            <label for="title" class="font-semibold">Título</label>
+            <input type="text" formControlName="title" name="title" id="title" class="bg-white border-1 border-black rounded-sm p-1">
+            <div *ngIf="title.invalid && (title.dirty || title.touched)" class="text-red-500">
+                <div *ngIf="title.hasError('required')">
+                    Introduce un título
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 my-6">
+            <label for="content" class="font-semibold">Contenido</label>
+            <textarea formControlName="content" name="content" id="content" class="bg-white border-1 border-black rounded-sm p-1"></textarea>
+            <div *ngIf="content.invalid && (content.dirty || content.touched)" class="text-red-500">
+                <div *ngIf="content.hasError('required')">
+                    Introduce el contenido
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 my-6">
+            <label for="date" class="font-semibold">Fecha</label>
+            <input type="date" formControlName="date" name="date" id="date" class="bg-white border-1 border-black rounded-sm p-1">
+            <div *ngIf="date.invalid && (date.dirty || date.touched)" class="text-red-500">
+                <div *ngIf="date.hasError('required')">
+                    Introduce una fecha
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 my-6">
+            <label for="type" class="font-semibold">Tipo</label>
+            <select formControlName="type" name="type" id="type" class="bg-white border-1 border-black rounded-sm p-1">
+                <option value="" disabled selected>Selecciona un tipo de notificación</option>
+                <option *ngFor="let type of notifTypes" [value]="type">{{type}}</option>
+            </select>
+            <div *ngIf="type.invalid && (type.dirty || type.touched)" class="text-red-500">
+                <div *ngIf="date.hasError('required')">
+                    Introduce un tipo
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-2 my-7 gap-5">
+            <input type="submit" value="Crear" (click)="createNotif()" class="bg-blue-500 font-bold text-white p-1 rounded-sm">
+            <input type="reset" value="Borrar" class="bg-blue-500 font-bold text-white p-1 rounded-sm">
+        </div>
+        <div class="text-red-500">{{errorMessage}}</div>
+    </div>
+</form>
+<button type="button" [routerLink]="['/login']" class="bg-blue-500 font-bold text-white p-1 rounded-sm grid grid-cols-1 justify-items-center gap-5 w-fit justify-self-center shadow-md">
+    Volver al inicio
+</button>

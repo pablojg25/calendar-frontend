@@ -1,1 +1,5 @@
-<p>user-notification works!</p>
+<li>  
+    <div [ngClass]="notif.expired ? 'line-through text-red-500' : ''" (click)="showNotifDetails()">
+        <span class="font-bold">{{notif.date}}</span> {{notif.title}}
+    </div>
+</li>

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { RegisterService } from '../../services/register/register.service';
-import { RegisterRequest } from '../../services/register/registerRequest';
+import { RegisterRequest } from '../../models/registerRequest';
 
 @Component({
   selector: 'app-register',
@@ -45,11 +45,6 @@ export class RegisterComponent {
         }
       })
     }
-  }
-
-  redirectToLogin() {
-    this.registerForm.reset();
-    this.router.navigate(['login']);
   }
 
   get username() {

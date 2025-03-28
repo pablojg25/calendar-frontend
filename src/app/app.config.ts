@@ -2,8 +2,8 @@ import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { JwtInterceptorService } from './services/auth/jwt-interceptor.service';
-import { JwtInterceptorErrorService } from './services/auth/jwt-interceptor-error.service';
+import { JwtInterceptorService } from './interceptors/jwt-interceptor.service';
+import { JwtInterceptorErrorService } from './interceptors/jwt-interceptor-error.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [

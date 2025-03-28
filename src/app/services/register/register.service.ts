@@ -1,15 +1,15 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RegisterRequest } from './registerRequest';
+import { RegisterRequest } from '../../models/registerRequest';
 import { catchError, Observable, throwError, BehaviorSubject, tap, map } from 'rxjs';
-import { AuthResponse } from '../authResponse';
+import { AuthResponse } from '../../models/authResponse';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
 
-  currentUserToken: BehaviorSubject<String> = new BehaviorSubject<String>('');
+  currentUserToken: BehaviorSubject<String>;
 
   constructor(private http:HttpClient) {
     this.currentUserToken = new BehaviorSubject<String>(sessionStorage.getItem("token") || '');

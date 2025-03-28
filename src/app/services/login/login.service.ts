@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { LoginRequest } from './LoginRequest';
+import { LoginRequest } from '../../models/LoginRequest';
 import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { AuthResponse } from '../authResponse';
+import { AuthResponse } from '../../models/authResponse';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  currentUserToken: BehaviorSubject<String> = new BehaviorSubject<String>('');
+  currentUserToken: BehaviorSubject<String>;
 
   constructor(private http:HttpClient) {
     this.currentUserToken = new BehaviorSubject<String>(sessionStorage.getItem("token") || '');
