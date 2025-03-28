@@ -1,0 +1,10 @@
+<nav class="flex justify-between bg-gray-200 px-4 py-3 items-center shadow-md">
+    <button [routerLink]="['']" class="bg-gray-300  font-bold rounded-md px-3 py-2">Inicio</button>
+    <button *ngIf="userLoggedIn; else noLogin" (click)="logout()" class="bg-blue-500 text-white font-bold rounded-md px-3 py-2">Cerrar sesión</button>
+    <ng-template #noLogin>
+        <div  class="grid grid-cols-2 gap-2">
+            <button [routerLink]="['register']" class="bg-blue-500 text-white font-bold rounded-md px-3 py-2">Registrarse</button>
+            <button #login [routerLink]="['login']" class="bg-blue-500 text-white font-bold rounded-md px-3 py-2">Iniciar sesión</button>
+        </div>
+    </ng-template>
+</nav>

@@ -1,0 +1,30 @@
+<form [formGroup]="loginForm" class="bg-gray-200 mt-4 mb-3 rounded-md p-7 pt-5 grid grid-cols-1 justify-items-center gap-5 w-fit justify-self-center shadow-md">
+    <h1 class="text-2xl font-bold text-center">Registro</h1>
+    <div class="bg-gray-100 p-5 rounded-md shadow-md">
+        <div class="grid grid-cols-1 my-6">
+            <label for="username" class="font-semibold">Nombre de usuario</label>
+            <input type="text" formControlName="username" name="username" id="username" class="bg-white border-1 border-black rounded-sm p-1">
+            <div *ngIf="username.invalid && (username.dirty || username.touched)" class="text-red-500">
+                <div *ngIf="username.hasError('required')">
+                    Introduce un nombre
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 my-6">
+            <label for="password" class="font-semibold">Contraseña</label>
+            <input type="password" formControlName="password" name="password" id="password" class="bg-white border-1 border-black rounded-sm p-1">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-red-500">
+                <div *ngIf="password.hasError('required')">
+                    Introduce una contraseña
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 my-7 gap-5">
+            <input type="submit" value="Iniciar sesión" (click)="login()" class="bg-blue-500 font-bold text-white p-1 rounded-sm">
+            <div class="text-red-500">{{errorMessage}}</div>
+        </div>
+    </div>
+</form>
+<button type="button" [routerLink]="['/register']" class="bg-gray-100 underlined rounded-md p-3 grid grid-cols-1 justify-items-center gap-5 w-fit justify-self-center shadow-md">
+    ¿No tienes una cuenta?
+</button>
