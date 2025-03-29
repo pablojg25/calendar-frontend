@@ -40,4 +40,23 @@ export class HomeComponent {
     return (this.notifications?.length ?? 0) === 0;
   }
 
+  deletePastNotifs(): void {
+    this.userNotifsService.deletePastNotifs().subscribe({
+      next: () => {
+        if (this.notifications) {
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          this.notifications = this.notifications.filter(notif => {
+            const notifDate = new Date(notif.date);
+            notifDate.setHours(0, 0, 0, 0);
+            return notifDate >= today;
+          });
+        }
+      },
+      error: (errorData) => {
+        this.errorMessage = errorData;
+      }
+  })
+  }
+
 }

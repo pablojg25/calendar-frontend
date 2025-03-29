@@ -5,6 +5,7 @@
         <button [routerLink]="['create-user-notification']" class="bg-blue-500 text-white font-bold rounded-md mt-3 px-3 py-2">Crear notificación</button>
         <ng-template #notificationsList>
             <h1 class="text-2xl font-bold text-center">Notificaciones</h1>
+            <button (click)="deletePastNotifs()" class="bg-blue-500 text-white font-bold rounded-md mt-3 px-3 py-2">Eliminar notificaciones pasadas</button>
             <ul>
                 <app-user-notification *ngFor="let notif of notifications" [notif]="notif"></app-user-notification>
             </ul>
