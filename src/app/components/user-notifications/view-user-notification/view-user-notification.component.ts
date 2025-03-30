@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UpdateUserNotificationComponent } from '../update-user-notification/update-user-notification.component';
-import { UsernotifsService } from '../../services/usernotifs/usernotifs.service';
+import { UsernotifsService } from '../../../services/usernotifs/usernotifs.service';
 
 @Component({
   selector: 'app-view-user-notification',

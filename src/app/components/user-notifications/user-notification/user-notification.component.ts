@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { UserNotif } from '../../models/usernotifs';
+import { UserNotif } from '../../../models/usernotifs';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UserNotif } from '../../models/usernotifs';
-import { UserNotificationComponent } from '../user-notification/user-notification.component';
+import { UserNotificationComponent } from '../user-notifications/user-notification/user-notification.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { UsernotifsService } from '../../services/usernotifs/usernotifs.service';

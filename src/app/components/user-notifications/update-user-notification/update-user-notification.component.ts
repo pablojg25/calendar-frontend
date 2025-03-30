@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { UserNotif } from '../../models/usernotifs';
-import { UserNotifRequest } from '../../models/userNotifRequest';
+import { UserNotif } from '../../../models/usernotifs';
+import { UserNotifRequest } from '../../../models/userNotifRequest';
 import { CommonModule } from '@angular/common';
-import { UsernotifsService } from '../../services/usernotifs/usernotifs.service';
+import { UsernotifsService } from '../../../services/usernotifs/usernotifs.service';
 
 @Component({
   selector: 'app-update-user-notification',

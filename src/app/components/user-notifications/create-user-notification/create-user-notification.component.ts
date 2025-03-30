@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { UserNotifRequest } from '../../models/userNotifRequest';
-import { UsernotifsService } from '../../services/usernotifs/usernotifs.service';
+import { UserNotifRequest } from '../../../models/userNotifRequest';
+import { UsernotifsService } from '../../../services/usernotifs/usernotifs.service';
 
 @Component({
   selector: 'app-create-user-notification',

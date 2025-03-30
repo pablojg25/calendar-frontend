@@ -1,0 +1,16 @@
+<div class="m-5 justify-items-center">
+    <h1 class="text-2xl font-bold text-center mb-3">Usuario</h1>
+    <div class="grid grid-cols-1 justify-items-center mb-3">
+        <h2 class="text-xl font-semibold text-center">Nombre de usuario</h2>
+        <p>{{user?.username}}</p>
+    </div>
+    <div class="grid grid-cols-1 justify-items-center mb-3">
+        <h2 class="text-xl font-semibold text-center">Email</h2>
+        <p>{{user?.email}}</p>
+    </div>
+    <button *ngIf="subscribed; else subscribeButton" class="bg-green-500 text-white font-bold rounded-md px-3 py-2 mx-2">Desuscribirse</button>
+    <ng-template #subscribeButton>
+        <button (click)="subscribe()" class="bg-green-500 text-white font-bold rounded-md px-3 py-2 mx-2">Suscribirse</button>
+    </ng-template>
+    <button [routerLink]="['/subscriptions']" class="bg-blue-500 text-white font-bold rounded-md px-3 py-2">Volver</button>
+</div>

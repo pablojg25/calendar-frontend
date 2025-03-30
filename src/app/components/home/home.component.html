@@ -2,7 +2,7 @@
     <h1 *ngIf="!userLoggedIn; else login" class="text-2xl font-bold text-center">No has iniciado sesión</h1>
     <ng-template #login>
         <h1 *ngIf="noNotifications(notifications || [])" class="text-2xl font-bold text-center">No tienes notificaciones</h1>
-        <h1 *ngIf="!noNotifications(notifications || [])" class="text-2xl font-bold text-center">Notificaciones</h1>
+        <h1 *ngIf="!noNotifications(notifications || [])" class="text-2xl font-bold text-center">Notificaciones personales</h1>
         <div>
             <div class="grid grid-cols-1 mb-3">
                 <button [routerLink]="['create-user-notification']" class="bg-blue-500 text-white font-bold rounded-md mt-3 px-3 py-2">Crear notificación</button>
