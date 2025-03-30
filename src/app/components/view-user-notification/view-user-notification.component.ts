@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { UsernotifsService } from '../../services/usernotifs/usernotifs.service';
 import { CommonModule } from '@angular/common';
 import { UpdateUserNotificationComponent } from '../update-user-notification/update-user-notification.component';
+import { UsernotifsService } from '../../services/usernotifs/usernotifs.service';
 
 @Component({
   selector: 'app-view-user-notification',
@@ -23,7 +23,6 @@ export class ViewUserNotificationComponent {
 
   ngOnInit(): void {
     this.notification = history.state.notif;
-    console.log(this.notification);
   }
 
   updateNotif() {
