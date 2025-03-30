@@ -3,46 +3,42 @@
     <ng-template #login>
         <h1 *ngIf="noNotifications(notifications || [])" class="text-2xl font-bold text-center">No tienes notificaciones</h1>
         <h1 *ngIf="!noNotifications(notifications || [])" class="text-2xl font-bold text-center">Notificaciones</h1>
-        <div >
+        <div>
             <div class="grid grid-cols-1 mb-3">
                 <button [routerLink]="['create-user-notification']" class="bg-blue-500 text-white font-bold rounded-md mt-3 px-3 py-2">Crear notificación</button>
+                <button *ngIf="!noNotifications(pastNotifications || [])" (click)="deletePastNotifs()" class="bg-red-500 text-white font-bold rounded-md mt-3 px-3 py-2">Eliminar notificaciones pasadas</button>
             </div>
-            <div class="grid grid-cols-4 grid-rows-2 mb-3 gap-1">
-                <button (click)="changeView('all')" [ngClass]="{'bg-gray-300': view === 'all', 'bg-gray-500 text-white': view !== 'all'}" class="font-bold rounded-md mt-3 px-3 py-2">Todas</button>
-                <button (click)="changeView('today')" [ngClass]="{'bg-gray-300': view === 'today', 'bg-gray-500 text-white': view !== 'today'}"  class="bg-gray-500 text-white font-bold rounded-md mt-3 px-3 py-2">Hoy</button>
-                <button (click)="changeView('future')" [ngClass]="{'bg-gray-300': view === 'future', 'bg-gray-500 text-white': view !== 'future'}"  class="bg-gray-500 text-white font-bold rounded-md mt-3 px-3 py-2">Futuras</button>
-                <button (click)="changeView('past')" [ngClass]="{'bg-gray-300': view === 'past', 'bg-gray-500 text-white': view !== 'past'}"  class="bg-gray-500 text-white font-bold rounded-md mt-3 px-3 py-2">Pasadas</button>
-                <button (click)="changeView('Evento')" [ngClass]="{'bg-gray-300': view === 'Evento', 'bg-gray-500 text-white': view !== 'Evento'}" class="font-bold rounded-md mt-3 px-3 py-2">Eventos</button>
-                <button (click)="changeView('Reunión')" [ngClass]="{'bg-gray-300': view === 'Reunión', 'bg-gray-500 text-white': view !== 'Reunión'}"  class="bg-gray-500 text-white font-bold rounded-md mt-3 px-3 py-2">Reuniones</button>
-                <button (click)="changeView('Recordatorio')" [ngClass]="{'bg-gray-300': view === 'Recordatorio', 'bg-gray-500 text-white': view !== 'Recordatorio'}"  class="bg-gray-500 text-white font-bold rounded-md mt-3 px-3 py-2">Recordatorios</button>
-                <button (click)="changeView('Cita')" [ngClass]="{'bg-gray-300': view === 'Cita', 'bg-gray-500 text-white': view !== 'Cita'}"  class="bg-gray-500 text-white font-bold rounded-md mt-3 px-3 py-2">Citas</button>
-            </div>
-            <ul [ngSwitch]="view">
-                <div *ngSwitchCase="'all'">
-                    <div class="grid grid-cols-1 mb-5">
-                        <button *ngIf="!noNotifications(notifications || [])" (click)="deletePastNotifs()" class="bg-red-500 text-white font-bold rounded-md mt-3 px-3 py-2">Eliminar notificaciones pasadas</button>
-                    </div>
-                    <app-user-notification *ngFor="let notif of notifications" [notif]="notif"></app-user-notification>
+            <div class="grid grid-cols-3 mb-3 gap-5 justify-items-center">
+                <div class="grid grid-cols-1">
+                    <button (click)="changeView('all')" [ngClass]="{'bg-gray-300': view === 'all', 'bg-gray-500 text-white': view !== 'all'}" class="font-bold rounded-md mt-3 px-3 py-2">Todas</button>
+                    <button (click)="changeView('today')" [ngClass]="{'bg-gray-300': view === 'today', 'bg-gray-500 text-white': view !== 'today'}"  class="bg-gray-500 text-white font-bold rounded-md mt-3 px-3 py-2">Hoy</button>
+                    <button (click)="changeView('future')" [ngClass]="{'bg-gray-300': view === 'future', 'bg-gray-500 text-white': view !== 'future'}"  class="bg-gray-500 text-white font-bold rounded-md mt-3 px-3 py-2">Futuras</button>
+                    <button (click)="changeView('past')" [ngClass]="{'bg-gray-300': view === 'past', 'bg-gray-500 text-white': view !== 'past'}"  class="bg-gray-500 text-white font-bold rounded-md mt-3 px-3 py-2">Pasadas</button>
+                    <button (click)="changeView('Evento')" [ngClass]="{'bg-gray-300': view === 'Evento', 'bg-gray-500 text-white': view !== 'Evento'}" class="font-bold rounded-md mt-3 px-3 py-2">Eventos</button>
+                    <button (click)="changeView('Reunión')" [ngClass]="{'bg-gray-300': view === 'Reunión', 'bg-gray-500 text-white': view !== 'Reunión'}"  class="bg-gray-500 text-white font-bold rounded-md mt-3 px-3 py-2">Reuniones</button>
+                    <button (click)="changeView('Recordatorio')" [ngClass]="{'bg-gray-300': view === 'Recordatorio', 'bg-gray-500 text-white': view !== 'Recordatorio'}"  class="bg-gray-500 text-white font-bold rounded-md mt-3 px-3 py-2">Recordatorios</button>
+                    <button (click)="changeView('Cita')" [ngClass]="{'bg-gray-300': view === 'Cita', 'bg-gray-500 text-white': view !== 'Cita'}"  class="bg-gray-500 text-white font-bold rounded-md mt-3 px-3 py-2">Citas</button>
                 </div>
-                <div *ngSwitchCase="'past'">
-                    <div class="grid grid-cols-1 mb-5">
-                        <button *ngIf="!noNotifications(pastNotifications)" (click)="deletePastNotifs()" class="bg-red-500 text-white font-bold rounded-md mt-3 px-3 py-2">Eliminar notificaciones pasadas</button>
-                    </div>
-                    <app-user-notification *ngFor="let notif of pastNotifications" [notif]="notif"></app-user-notification>
+                <div class="col-span-2">
+                    <ul [ngSwitch]="view">
+                        <div *ngSwitchCase="'all'">
+                            <app-user-notification *ngFor="let notif of notifications" [notif]="notif"></app-user-notification>
+                        </div>
+                        <div *ngSwitchCase="'past'">
+                            <app-user-notification *ngFor="let notif of pastNotifications" [notif]="notif"></app-user-notification>
+                        </div>
+                        <div *ngSwitchCase="'today'">
+                            <app-user-notification *ngFor="let notif of todayNotifications" [notif]="notif"></app-user-notification>
+                        </div>
+                        <div *ngSwitchCase="'future'">
+                            <app-user-notification *ngFor="let notif of futureNotifications" [notif]="notif"></app-user-notification>
+                        </div>
+                        <div *ngSwitchDefault>
+                            <app-user-notification *ngFor="let notif of typeNotifications" [notif]="notif"></app-user-notification>
+                        </div>
+                    </ul>
                 </div>
-                <div *ngSwitchCase="'today'">
-                    <app-user-notification *ngFor="let notif of todayNotifications" [notif]="notif"></app-user-notification>
-                </div>
-                <div *ngSwitchCase="'future'">
-                    <app-user-notification *ngFor="let notif of futureNotifications" [notif]="notif"></app-user-notification>
-                </div>
-                <div *ngSwitchDefault>
-                    <div class="grid grid-cols-1 mb-5">
-                        <button *ngIf="!noNotifications(typeNotifications)" (click)="deletePastNotifs()" class="bg-red-500 text-white font-bold rounded-md mt-3 px-3 py-2">Eliminar notificaciones pasadas</button>
-                    </div>
-                    <app-user-notification *ngFor="let notif of typeNotifications" [notif]="notif"></app-user-notification>
-                </div>
-            </ul>
+            </div> 
         </div>
     </ng-template>
 </div>
