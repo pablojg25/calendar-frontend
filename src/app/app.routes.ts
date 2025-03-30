@@ -6,6 +6,7 @@ import { CreateUserNotificationComponent } from './components/create-user-notifi
 import { authGuard } from './guards/auth.guard';
 import { noLoginGuard } from './guards/no-login.guard';
 import { ViewUserNotificationComponent } from './components/view-user-notification/view-user-notification.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
 
 export const routes: Routes = [
     {path:'',component:HomeComponent},
@@ -13,5 +14,6 @@ export const routes: Routes = [
     {path:'register',component:RegisterComponent,canActivate:[noLoginGuard]},
     {path:'create-user-notification',component:CreateUserNotificationComponent,canActivate:[authGuard]},
     {path:'user-notification',component:ViewUserNotificationComponent,canActivate:[authGuard]},
+    {path:'user-info',component:UserInfoComponent,canActivate:[authGuard]},
     {path:'**',redirectTo:''},
 ];

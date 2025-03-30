@@ -1,5 +1,5 @@
 <li>  
     <div [ngClass]="notif.expired ? 'line-through text-red-500' : ''" (click)="showNotifDetails()">
-        <span class="font-bold">{{notif.date}}</span> {{notif.title}}
+        <span class="font-bold">{{notif.date}}</span> {{notif.title}} - {{notif.type}}
     </div>
 </li>

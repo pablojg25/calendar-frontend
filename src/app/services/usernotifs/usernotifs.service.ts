@@ -54,4 +54,11 @@ export class UsernotifsService {
     return throwError(() => new Error("Hubo un error en el procesado de notificaciones"));
   }
 
+  deletePastNotifs() {
+    return this.http.delete<UserNotifResponse>(environment.urlApi + "/notifications/delete-past").pipe(
+      map(notifData => notifData.body),
+      catchError(this.handleError)
+    );
+  }
+
 }

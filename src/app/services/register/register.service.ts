@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { RegisterRequest } from '../../models/registerRequest';
 import { catchError, Observable, throwError, BehaviorSubject, tap, map } from 'rxjs';
 import { AuthResponse } from '../../models/authResponse';
+import { TokenService } from '../jwt/token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class RegisterService {
 
   currentUserToken: BehaviorSubject<String>;
 
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient, private tokenService:TokenService) {
     this.currentUserToken = new BehaviorSubject<String>(sessionStorage.getItem("token") || '');
   }
 

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { UserNotif } from '../../models/usernotifs';
-import { UsernotifsService } from '../../services/usernotifs/usernotifs.service';
 import { UserNotificationComponent } from '../user-notification/user-notification.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { UsernotifsService } from '../../services/usernotifs/usernotifs.service';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +19,7 @@ export class HomeComponent {
   userLoggedIn:boolean = false;
   notifications?:UserNotif[] = [];
   errorMessage:String = '';
+  view:String = 'today';
 
   constructor(private userNotifsService:UsernotifsService) {}
 
@@ -36,8 +37,80 @@ export class HomeComponent {
     }
   }
 
-  get noNotifications(): boolean {
-    return (this.notifications?.length ?? 0) === 0;
+  noNotifications(notifications:UserNotif[]): boolean {
+    return (notifications?.length ?? 0) === 0;
+  }
+
+  deletePastNotifs(): void {
+    this.userNotifsService.deletePastNotifs().subscribe({
+      next: () => {
+        if (this.notifications) {
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          this.notifications = this.notifications.filter(notif => {
+            const notifDate = new Date(notif.date);
+            notifDate.setHours(0, 0, 0, 0);
+            return notifDate >= today;
+          });
+        }
+      },
+      error: (errorData) => {
+        this.errorMessage = errorData;
+      }
+  })
+  }
+
+  get pastNotifications():UserNotif[] {
+    if (this.notifications) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      return this.notifications.filter(notif => {
+        const notifDate = new Date(notif.date);
+        notifDate.setHours(0, 0, 0, 0);
+        return notifDate < today;
+      });
+    }
+    return [];
+  }
+
+  
+  get todayNotifications():UserNotif[] {
+    if (this.notifications) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      return this.notifications.filter(notif => {
+        const notifDate = new Date(notif.date);
+        notifDate.setHours(0, 0, 0, 0);
+        return notifDate.getTime() === today.getTime();
+      });
+    }
+    return [];
+  }
+
+  get futureNotifications():UserNotif[] {
+    if (this.notifications) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      return this.notifications.filter(notif => {
+        const notifDate = new Date(notif.date);
+        notifDate.setHours(0, 0, 0, 0);
+        return notifDate > today;
+      });
+    }
+    return [];
+  }
+
+  get typeNotifications():UserNotif[] {
+    if (this.notifications) {
+      return this.notifications.filter(notif => {
+        return notif.type==this.view;
+      });
+    }
+    return [];
+  }
+
+  changeView(view:String):void {
+    this.view=view;
   }
 
 }

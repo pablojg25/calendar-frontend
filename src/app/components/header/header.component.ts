@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { RegisterService } from '../../services/register/register.service';
 import { LoginService } from '../../services/login/login.service';
+import { TokenService } from '../../services/jwt/token.service';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,7 @@ export class HeaderComponent implements OnInit {
   
   userLoggedIn:boolean = false;
 
-  constructor(private registerService:RegisterService, private loginService:LoginService, private router:Router) {}
+  constructor(private registerService:RegisterService, private loginService:LoginService, private tokenService:TokenService, private router:Router) {}
 
   ngOnInit(): void {
     this.registerService.currentUserToken.subscribe({
@@ -30,7 +31,11 @@ export class HeaderComponent implements OnInit {
         this.userLoggedIn = token != null;
       }
     })
-    this.userLoggedIn = sessionStorage.getItem("token") != null;
+    this.tokenService.getUserLoggedIn().subscribe({
+      next: (loggedIn) => {
+        this.userLoggedIn = loggedIn;
+      }
+    });
   }
 
   logout(): void {

@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {jwtDecode} from 'jwt-decode';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
+
+  private userLoggedIn = new BehaviorSubject<boolean>(this.getToken()!=null);
 
   constructor(private router: Router) {}
 
@@ -43,7 +46,19 @@ export class TokenService {
 
   logout(): void {
     sessionStorage.removeItem('token');
+    this.userLoggedIn.next(false);
     this.router.navigate(['/login']);
+  }
+
+  updateAuthStatus(loggedIn: boolean): void {
+    if (!loggedIn) {
+      sessionStorage.removeItem("token");
+    }
+    this.userLoggedIn.next(loggedIn);
+  }
+
+  getUserLoggedIn():Observable<boolean> {
+    return this.userLoggedIn.asObservable();
   }
 
 }
