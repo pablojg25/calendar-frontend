@@ -6,7 +6,7 @@
     </div>
     <h2 *ngIf="subscriptions == null  || subscriptions.length == 0; else suscriptionsList">No estás suscrito a ningún usuario</h2>
     <ng-template #suscriptionsList>
-        <ul>
+        <ul class="mt-5">
             <li *ngFor="let subscription of subscriptions">{{subscription.username}}</li>
         </ul>
     </ng-template>

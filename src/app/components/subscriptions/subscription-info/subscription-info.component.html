@@ -8,7 +8,7 @@
         <h2 class="text-xl font-semibold text-center">Email</h2>
         <p>{{user?.email}}</p>
     </div>
-    <button *ngIf="subscribed; else subscribeButton" class="bg-green-500 text-white font-bold rounded-md px-3 py-2 mx-2">Desuscribirse</button>
+    <button *ngIf="subscribed; else subscribeButton" (click)="unsubscribe()" class="bg-red-500 text-white font-bold rounded-md px-3 py-2 mx-2">Desuscribirse</button>
     <ng-template #subscribeButton>
         <button (click)="subscribe()" class="bg-green-500 text-white font-bold rounded-md px-3 py-2 mx-2">Suscribirse</button>
     </ng-template>

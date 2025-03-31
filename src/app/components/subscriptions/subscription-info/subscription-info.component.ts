@@ -35,5 +35,13 @@ export class SubscriptionInfoComponent {
     }
   }
 
+  unsubscribe() {
+    if (this.user != null) {
+      this.subscriptionService.unsubscribe(this.user?.email).subscribe({
+        next: () => {this.subscribed = false}
+      })
+    }
+  }
+
 
 }

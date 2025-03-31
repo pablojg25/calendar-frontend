@@ -41,6 +41,12 @@ export class SubscriptionsService {
     )
   }
 
+  unsubscribe(email:String):Observable<void> {
+    return this.http.delete<void>("http://localhost:8080/api/subscriptions/" + email).pipe(
+      catchError(this.handleError)
+    )
+  }
+
   handleError(error:HttpErrorResponse) {
     return throwError(() => new Error("Hubo un error en la obtención de suscripciones"));
   }
